@@ -314,6 +314,7 @@ class Plane {
                     }
                 }
                 plane.setAttribute("stroke-opacity", "0");
+                plane.setAttribute("stroke", "red");
                 plane.tryIt1 = true;
                 ready = true;
 
