@@ -9,12 +9,7 @@ var transformCorrection;
 
 'use strict';
 
-var sound_stolk;
-function alert_stolk(){
-    if(sound_stolk!==1) {
-        playertwo.play()
-    }
-}
+
 function createRandomPath(a, b) {
     let array = [];
     array.push("M");
@@ -386,15 +381,15 @@ class Plane {
                         }
                     }
                     //запускаем эту же функцию опять
-                    setTimeout(this.drive.bind(this), 1);
+                    setTimeout(this.drive.bind(this), 100);
                 } else {
                     lineMove.setAttribute("d", s.join(" "));
-                    setTimeout(this.drive.bind(this), 1);
+                    setTimeout(this.drive.bind(this), 100);
 
                 }
             }
         } else {
-            setTimeout(this.drive.bind(this), 1);
+            setTimeout(this.drive.bind(this), 100);
         }
     }
 }
@@ -420,7 +415,7 @@ function add() {
     addTimeaou = setTimeout(add, 5000);
 }
 
-let checkTimeoutCrash = setTimeout(checkingCrash, 500);
+let checkTimeoutCrash = setTimeout(checkingCrash, 3000);
 
 //проверяем на сталкивание
 function checkingCrash() {
