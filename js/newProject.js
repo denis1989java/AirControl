@@ -6,10 +6,15 @@ let gameStart = 0;//это переменная для записи времен
 var userName;
 var planes = 0;
 var transformCorrection;
-var sound_stolk;
 
 'use strict';
 
+var sound_stolk;
+function alert_stolk(){
+    if(sound_stolk!==1) {
+        playertwo.play()
+    }
+}
 function createRandomPath(a, b) {
     let array = [];
     array.push("M");
@@ -286,6 +291,7 @@ class Plane {
                     //console.log(lengt3)
                     let vector;
                     if (rt.length > 5) {
+						
                         vector = Math.sqrt(Math.pow((parseInt(rt[5]) - parseInt(rt[2])), 2) + Math.pow((parseInt(rt[4]) - parseInt(rt[1])), 2));
                     }
                     if (rt.length > 5 && (lengt1 - vector) > lengt3) {
@@ -351,6 +357,7 @@ class Plane {
                     vector = Math.sqrt(Math.pow((parseInt(s[5]) - parseInt(s[2])), 2) + Math.pow((parseInt(s[4]) - parseInt(s[1])), 2));
                 }
                 if (s.length > 5 && (lengt1 - vector) > lengt3 + 20 && plane.tryIt1) {
+					
                     //console.log(lengt1 + "    " + lengt2 + "     " + (lengt3) + "    " + time)
                     s.shift();
                     s.shift();
@@ -379,15 +386,15 @@ class Plane {
                         }
                     }
                     //запускаем эту же функцию опять
-                    setTimeout(this.drive.bind(this), 100);
+                    setTimeout(this.drive.bind(this), 1);
                 } else {
                     lineMove.setAttribute("d", s.join(" "));
-                    setTimeout(this.drive.bind(this), 100);
+                    setTimeout(this.drive.bind(this), 1);
 
                 }
             }
         } else {
-            setTimeout(this.drive.bind(this), 100);
+            setTimeout(this.drive.bind(this), 1);
         }
     }
 }
@@ -413,7 +420,7 @@ function add() {
     addTimeaou = setTimeout(add, 5000);
 }
 
-let checkTimeoutCrash = setTimeout(checkingCrash, 3000);
+let checkTimeoutCrash = setTimeout(checkingCrash, 500);
 
 //проверяем на сталкивание
 function checkingCrash() {
@@ -476,6 +483,7 @@ function checkingCrash() {
                                             let vector = Math.sqrt(qw + we);
                                             //столкнулись
                                             if (vector < (r1 + r2)) {
+                                                playerthree.play("./audio/bum.mp3")
                                                 XY.setAttribute("fill", "red");
                                                 XY1.setAttribute("fill", "red");
                                                 //останавливаем перебор и вызываем функцию стоп
@@ -487,8 +495,10 @@ function checkingCrash() {
                                                 toBreak = true;
                                                 break;
                                             } else {
+												
                                                 //подсвечиваем красным если самолеты близко
                                                 if (vector < (r1 + r2 + (40 * transformCorrection))) {
+                                                    playertwo.playPreloaded()//Запуск контента который загружен
                                                     XY.setAttribute("stroke", "red");
                                                     XY1.setAttribute("stroke", "red");
                                                     XY.setAttribute("stroke-opacity", "1");
@@ -641,6 +651,7 @@ function checkingLand() {
                         //меняем видимость самолета
                         let plane = document.getElementById(allPlanes[i].id);
                         delete allPlanes[i];
+                        playerfour.play("./audio/landing.mp3")
                         setTimeout(function () {
                             plane.setAttribute("opacity", "0.66")
                             setTimeout(function () {
@@ -692,6 +703,7 @@ function checkingLand() {
                         line.setAttribute("d", newArray.join(" "));
                         let plane = document.getElementById(allPlanes[i].id);
                         delete allPlanes[i];
+						playerfour.play("./audio/landing.mp3")
                         setTimeout(function () {
                             plane.setAttribute("opacity", "0.66")
                             setTimeout(function () {
@@ -728,6 +740,7 @@ function checkingLand() {
                         line.setAttribute("d", newArray.join(" "));
                         let plane = document.getElementById(allPlanes[i].id);
                         delete allPlanes[i];
+						playerfour.play("./audio/landing.mp3")
                         setTimeout(function () {
                             plane.setAttribute("opacity", "0.66")
                             setTimeout(function () {
@@ -779,6 +792,7 @@ function startGame() {
     sessionStorage.setItem('restart', false);
     $('#menu').hide('slow');
     $('#game').show('slow');
+    audioPlayer.play("./audio/smooth_lovin.mp3")
     document.getElementById('score').innerHTML = `NickName: ${userName} Planes: ${planes}`;
     setTimeout(add(), 3000);
     transformCorrectionF();
@@ -824,6 +838,24 @@ var resize = function (e) {
     transformCorrectionF();
     console.log(transformCorrection);
 };
+
+var audioPlayer = new ya.music.Audio("html5", "");
+var playertwo = new ya.music.Audio("html5", "");
+var playerthree = new ya.music.Audio("html5", "");
+var playerfour = new ya.music.Audio("html5", "");
+
+playertwo.preload("./audio/alert.mp3").then(function() {
+        console.log("Предварительная загрузка началась.");
+    }, function(err) {
+        console.error("Не удалось начать загрузку.", err);
+    }
+);
+playertwo.on(ya.music.Audio.EVENT_STATE, function(state) {
+    switch(state) {
+        case ya.music.Audio.STATE_PLAYING: sound_stolk=1; break;
+        case ya.music.Audio.STATE_PAUSED: sound_stolk=0; break;
+    }
+});
 (function () {
     var time;
     window.onresize = function (e) {
