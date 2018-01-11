@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AirConrol</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/newProject.js" type="text/javascript" defer></script>
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1">
+    <script src="https://music.yandex.ru/api/audio/dist/index.min.js"></script>
+</head>
+<body>
+<script>
+    'use strict'
+    window.onload = function () {
+        if (sessionStorage.getItem('restart')) {
+            userName = sessionStorage.getItem('name');
+            startGame();
+        } else {
+            sessionStorage.setItem('name', null);
+        }
+    }</script>
+<div id="menu">
+    Airport Control
+    <input id='start' class="btn" type="button" value="Start Game" onclick="getUserName()">
+    <input id='status' class="btn" type="button" value="Score" onclick="getBestResult()">
+    <input id='exit' class="btn" type="button" value="Exit" onclick="exit()">
+</div>
+<div id="game">
+    <div id="score"></div>
+    <svg id="runway">
+        <defs>
+            <pattern id="plane1" x="0" y="0" height="40" width="40">
+                <image x="0" y="0" xlink:href="img/plane1.png"></image>
+            </pattern>
+        </defs>
+        <defs>
+            <pattern id="plane3" x="0" y="0" height="40" width="40">
+                <image x="0" y="0" xlink:href="img/plane3.png"></image>
+            </pattern>
+        </defs>
+        <defs>
+            <pattern id="vert1" x="0" y="0" height="40" width="40">
+                <image x="0" y="0" xlink:href="img/vert1.png"></image>
+            </pattern>
+        </defs>
+    </svg>
+    <div id="buttons">
+        <input class="btn" type="button" value="Pause" onclick="pause()">
+        <input class="btn" type="button" value="Restart" onclick="restartConfirm()">
+        <input class="btn" type="button" value="Exit" onclick="exit()">
+    </div>
+</div>
+</body>
+</html>

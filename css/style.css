@@ -1,0 +1,262 @@
+body {
+    margin: 0;
+}
+
+div {
+    text-align: center;
+    font-family: 'Shadows Into Light', cursive;
+    color: white;
+    font-size: 100px;
+}
+
+#menu {
+    height: 100vh;
+    width: 100%;
+    background: url(../img/screen.jpg);
+    background-size: cover;
+}
+
+#game {
+    height: 100vh;
+    width: 100%;
+    margin: auto;
+    padding: 0;
+    background-color: yellow;
+    display: none;
+}
+
+#score {
+    font-size: 20px;
+    color: blue;
+}
+
+#runway {
+    width: 1160px;
+    height: 680px;
+    border: solid 20px;
+    border-color: white;
+    background-color: aqua;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -600px;
+    margin-top: -360px;
+    background-image: url('../img/runway.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%
+}
+
+#buttons {
+    width: 100%;
+    font-size: 20px;
+}
+
+input.btn {
+    min-width: 200px;
+    display: block;
+    position: relative;
+    font-family: Arial, Helvetica, FreeSans, "Liberation Sans", "Nimbus Sans L", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(245, 245, 245);
+    text-shadow: 0 -1px rgba(0, 0, 0, .1);
+    text-decoration: none;
+    user-select: none;
+    padding: .3em 1em;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    background: blue linear-gradient(lightblue, blue);
+    box-shadow: inset blue 0 -1px 1px, inset 0 1px 1px lightblue, blue 0 0 0 1px, rgba(0, 0, 0, .3) 0 2px 5px;
+    -webkit-animation: pulsate 1.2s linear infinite;
+    animation: pulsate 1.2s linear infinite;
+}
+
+input.btn:hover {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+    cursor: pointer;
+}
+
+input.btn:active {
+    top: 1px;
+    color: #fff;
+    text-shadow: 0 -1px rgba(0, 0, 0, .3), 0 0 5px #ffd, 0 0 8px #fff;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, .3), 0 1px 1px #fff, inset 0 1px 2px rgba(0, 0, 0, .8), inset 0 -1px 0 rgba(0, 0, 0, .05);
+}
+
+#start {
+    top: 20%;
+    left: 5%;
+}
+
+#status {
+    top: 25%;
+    left: 5%;
+}
+
+#exit {
+    top: 30%;
+    left: 5%;
+}
+
+@-webkit-keyframes pulsate {
+    50% {
+        color: #fff;
+        text-shadow: 0 -1px rgba(0, 0, 0, .3), 0 0 5px #ffd, 0 0 8px #fff;
+    }
+}
+
+@keyframes pulsate {
+    50% {
+        color: #fff;
+        text-shadow: 0 -1px rgba(0, 0, 0, .3), 0 0 5px #ffd, 0 0 8px #fff;
+    }
+}
+
+#buttons input.btn {
+    margin: 0 2%;
+    min-width: 20%;
+    padding: 0;
+    display: inline-block;
+}
+
+@media (max-width: 1920px) {
+    #runway {
+        transform: scale(1.1);
+    }
+}
+
+@media (max-width: 1368px) {
+    #runway {
+        transform: scale(0.8);
+        top: 52%
+    }
+
+    #score {
+        font-size: 15px;
+    }
+
+    #buttons {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 1000px) {
+    #runway {
+        transform: scale(0.7);
+        top: 52%
+    }
+}
+
+@media (max-width: 800px) {
+    #runway {
+        transform: scale(0.6);
+        top: 52%
+    }
+}
+
+@media (max-width: 730px) {
+    #runway {
+        transform: scale(0.55);
+        top: 52%
+    }
+}
+
+@media (max-width: 650px) {
+    #runway {
+        transform: scale(0.5);
+        top: 52%
+    }
+}
+
+@media (max-width: 600px) {
+    #runway {
+        transform: scale(0.45);
+        top: 52%
+    }
+}
+
+@media (max-width: 540px) {
+
+    #menu {
+        font-size: 70px;
+    }
+
+    #runway {
+        transform: scale(0.4);
+        top: 52%
+    }
+}
+
+@media (max-width: 480px) {
+    #menu {
+        font-size: 60px;
+    }
+
+    #runway {
+        top: 52%;
+        transform: rotate(90deg) scale(0.4);
+    }
+}
+
+@media (max-width: 320px) {
+
+    #menu {
+        font-size: 50px;
+    }
+
+    #runway {
+        top: 52%;
+        transform: rotate(90deg) scale(0.3);
+    }
+}
+
+@media (max-height: 420px) {
+
+    #menu {
+        font-size: 50px;
+    }
+
+    #runway {
+        top: 55%;
+        transform: scale(0.45);
+    }
+}
+
+@media (max-height: 380px) {
+
+    #menu {
+        font-size: 50px;
+    }
+
+    #runway {
+        top: 55%;
+        transform: scale(0.4);
+    }
+}
+
+@media (max-height: 320px) {
+
+    #menu {
+        font-size: 50px;
+    }
+
+    #score {
+        font-size: 10px;
+    }
+
+    #buttons {
+        font-size: 10px;
+    }
+
+    #buttons input.btn {
+        font-size: 10px;
+    }
+
+    #runway {
+        top: 55%;
+        transform: scale(0.4);
+    }
+}
+
